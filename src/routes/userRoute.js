@@ -5,7 +5,11 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
 
+// Utiliza o middleware para validar as requisicoes nas rotas abaixo
 router.use(authMiddleware);
+
+// Funcionalidades do tipo GET, PUT, DELETE
+// So podem ser utilizado pelo admin ou pelo propio usuario
 
 const userRoute = {
     get: async (req, res) => {
