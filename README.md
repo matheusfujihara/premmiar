@@ -29,3 +29,26 @@ Deverá construir uma API utilizando a tecnologia NodeJS e o front-end utilizar 
         - userRoute.js
         - index.js
 * server.js
+
+## LISTAGEM DE ROTAS
+
+### POST
+
+* /user 	= Realiza o cadastro de um novo usuário.
+* /login 	= Realiza o login de um usuário e retorna um token de acesso.
+
+* O token será utilizado para validar alguams rotas.
+* Token do tipo Authorization, coloque a palavra `Bearer **TOKEN**` no header.
+
+### GET
+
+* /user         = Retorna todos os usuários cadastrados.
+* /user/:userId	= Retorna um usuário específico.
+
+### PUT
+
+* /user/:userId = Atualiza os dados de um usuário especifico.
+
+### DELETE
+
+* /user/:userId = Deleta um usuário específico.

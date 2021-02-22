@@ -19,14 +19,12 @@ router.get('/user/:userId', async (req, res, next) => {
     await userRoute.getUser(req, res);
 });
 
-router.put('/user', async (req, res, next) => {
+router.put('/user/:userId', async (req, res, next) => {
     await userRoute.put(req, res);
 });
 
-router.delete('/user', async (req, res, next) => {
+router.delete('/user/:userId', async (req, res, next) => {
     await userRoute.delete(req, res);
 });
-
-
 
 module.exports = router;
