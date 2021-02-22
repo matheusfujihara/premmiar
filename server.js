@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const http = require('http');
 
 const app = express();
@@ -23,6 +24,7 @@ const routes = require('./src/routes/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.set('port', port);
 // require('./src/config/database')
 
