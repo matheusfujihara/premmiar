@@ -50,6 +50,8 @@ const userRoute = {
                 email
             });
     
+            console.log(23, user);
+
             await user.save();
     
             res.send({ user });
