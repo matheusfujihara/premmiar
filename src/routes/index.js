@@ -15,15 +15,15 @@ router.get('/user', async (req, res, next) => {
     await userRoute.get(req, res);
 });
 
-router.get('/user/:userId', async (req, res, next) => {
+router.get('/user/:userEmail', async (req, res, next) => {
     await userRoute.getUser(req, res);
 });
 
-router.put('/user/:userId', async (req, res, next) => {
+router.put('/user/:userEmail', async (req, res, next) => {
     await userRoute.put(req, res);
 });
 
-router.delete('/user/:userId', async (req, res, next) => {
+router.delete('/user/:userEmail', async (req, res, next) => {
     await userRoute.delete(req, res);
 });
 

@@ -29,13 +29,13 @@ const userRoute = {
     put: async (req, res) => {
         try {
             const { name, email} = req.body;
-            const { userId } = req.params;
-            const user = await User.find({ userId });
+            const { userEmail } = req.params;
+            const user = await User.find({ email: userEmail });
             const decoded = decodedToken(req.headers.authorization);
 
             if (decoded.email !== user.email) {
                 if (decoded.email == "admin@admin.com") {
-                    await User.findByIdAndUpdate(req.params.userId, { 
+                    await User.findByIdAndUpdate({ email: userEmail }, { 
                         name, 
                         email
                     });
@@ -44,7 +44,7 @@ const userRoute = {
                 res.status(401).send({ error: 'Unauthorized! Its necessary to be an administrator.'});                    
             }
 
-            user = await User.findByIdAndUpdate(req.params.userId, { 
+            user = await User.findOneAndUpdate({ email: userEmail }, { 
                 name, 
                 email
             });
@@ -60,20 +60,20 @@ const userRoute = {
     },
     delete: async (req, res) => {
         try {
-            const { userId } = req.params;
-            const user = await User.find({ userId });
+            const { userEmail } = req.params;
+            const user = await User.find({ email: userEmail });
             const decoded = decodedToken(req.headers.authorization);
 
             if (decoded.email !== user.email) {
                 if (decoded.email == "admin@admin.com") {
-                    await User.findByIdAndRemove(req.params.userId);
+                    await User.findByIdAndRemove({ email: userEmail });
                     return res.status(200).send({ success: true, response: 'Successfully delete'});
                 }
 
                 res.status(401).send({ error: 'Unauthorized! Its necessary to be an administrator.'});                    
             }
 
-            await User.findByIdAndRemove(req.params.userId);
+            await User.findOneAndRemove({ email: userEmail });
     
             return res.status(200).send({ success: true, response: 'Successfully delete'});
         } catch (err) {
@@ -86,7 +86,7 @@ const userRoute = {
             if (decoded.email !== "admin@admin.com")
                 res.status(401).send({ error: 'Unauthorized! Its necessary to be an administrator.'});
 
-            const user = await User.findById(req.params.userId);
+            const user = await User.find({ email: userEmail });
     
             return res.send({ user });
         } catch (err) {
